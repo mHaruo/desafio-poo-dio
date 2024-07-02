@@ -4,9 +4,12 @@ import br.com.dio.desafio.dominio.Dev;
 import br.com.dio.desafio.dominio.Mentoria;
 
 import java.time.LocalDate;
+import java.util.Scanner;
 
 public class Main {
     public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+
         Curso curso1 = new Curso();
         curso1.setTitulo("Curso Java");
         curso1.setDescricao("Descrição Curso Java");
@@ -29,31 +32,49 @@ public class Main {
         bootcamp.getConteudos().add(curso2);
         bootcamp.getConteudos().add(mentoria);
 
-        Dev devCamila = new Dev();
-        devCamila.setNome("Camila");
-        devCamila.inscreverBootcamp(bootcamp);
+        Dev dev = new Dev();
+        System.out.print("Digite o nome do Dev: ");
+        dev.setNome(scanner.nextLine());
+        dev.inscreverBootcamp(bootcamp);
 
-        System.out.println("=== Progressão de Camila ===");
-        System.out.println("Conteúdos Inscritos Camila: " + devCamila.getConteudosInscritos());
-        devCamila.progredir();
-        devCamila.progredir();
-        System.out.println("Conteúdos Inscritos Camila após progresso: " + devCamila.getConteudosInscritos());
-        System.out.println("Conteúdos Concluídos Camila: " + devCamila.getConteudosConcluidos());
-        System.out.println("XP Total Camila: " + devCamila.calcularTotalXp());
-        System.out.println("-----------------------------");
+        boolean continuar = true;
+        while (continuar) {
+            System.out.println("\n=== Menu de Progressão ===");
+            System.out.println("1. Progredir");
+            System.out.println("2. Exibir Conteúdos Inscritos");
+            System.out.println("3. Exibir Conteúdos Concluídos");
+            System.out.println("4. Exibir XP Total");
+            System.out.println("5. Sair");
+            System.out.print("Escolha uma opção: ");
+            int opcao = scanner.nextInt();
+            scanner.nextLine(); // Consumir a quebra de linha
 
-        Dev devJoao = new Dev();
-        devJoao.setNome("João");
-        devJoao.inscreverBootcamp(bootcamp);
+            switch (opcao) {
+                case 1:
+                    if (dev.getConteudosInscritos().isEmpty()) {
+                        System.out.println("Você não tem mais conteúdos inscritos.");
+                    } else {
+                        dev.progredir();
+                        System.out.println("Progresso realizado.");
+                    }
+                    break;
+                case 2:
+                    System.out.println("Conteúdos Inscritos: " + dev.getConteudosInscritos());
+                    break;
+                case 3:
+                    System.out.println("Conteúdos Concluídos: " + dev.getConteudosConcluidos());
+                    break;
+                case 4:
+                    System.out.println("XP Total: " + dev.calcularTotalXp());
+                    break;
+                case 5:
+                    continuar = false;
+                    break;
+                default:
+                    System.out.println("Opção inválida. Tente novamente.");
+            }
+        }
 
-        System.out.println("=== Progressão de João ===");
-        System.out.println("Conteúdos Inscritos João: " + devJoao.getConteudosInscritos());
-        devJoao.progredir();
-        devJoao.progredir();
-        devJoao.progredir();
-        System.out.println("Conteúdos Inscritos João após progresso: " + devJoao.getConteudosInscritos());
-        System.out.println("Conteúdos Concluídos João: " + devJoao.getConteudosConcluidos());
-        System.out.println("XP Total João: " + devJoao.calcularTotalXp());
-        System.out.println("-----------------------------");
+        scanner.close();
     }
 }
