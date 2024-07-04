@@ -22,12 +22,12 @@ public class Main {
 
         Mentoria mentoria = new Mentoria();
         mentoria.setTitulo("Mentoria de Java");
-        mentoria.setDescricao("Descrição Mentoria Java");
+        mentoria.setDescricao("Descricao Mentoria Java");
         mentoria.setData(LocalDate.now());
 
         Bootcamp bootcamp = new Bootcamp();
         bootcamp.setNome("Bootcamp Java Developer");
-        bootcamp.setDescricao("Descrição Bootcamp Java Developer");
+        bootcamp.setDescricao("Descricao Bootcamp Java Developer");
         bootcamp.getConteudos().add(curso1);
         bootcamp.getConteudos().add(curso2);
         bootcamp.getConteudos().add(mentoria);
@@ -39,30 +39,30 @@ public class Main {
 
         boolean continuar = true;
         while (continuar) {
-            System.out.println("\n=== Menu de Progressão ===");
+            System.out.println("\n=== Menu de Progressao ===");
             System.out.println("1. Progredir");
-            System.out.println("2. Exibir Conteúdos Inscritos");
-            System.out.println("3. Exibir Conteúdos Concluídos");
+            System.out.println("2. Exibir Conteudos Inscritos");
+            System.out.println("3. Exibir Conteudos Concluidos");
             System.out.println("4. Exibir XP Total");
             System.out.println("5. Sair");
-            System.out.print("Escolha uma opção: ");
+            System.out.print("Escolha uma opcao: ");
             int opcao = scanner.nextInt();
-            scanner.nextLine(); // Consumir a quebra de linha
+            scanner.nextLine();
 
             switch (opcao) {
                 case 1:
                     if (dev.getConteudosInscritos().isEmpty()) {
-                        System.out.println("Você não tem mais conteúdos inscritos.");
+                        System.out.println("Voce nao tem mais conteudos inscritos.");
                     } else {
                         dev.progredir();
                         System.out.println("Progresso realizado.");
                     }
                     break;
                 case 2:
-                    System.out.println("Conteúdos Inscritos: " + dev.getConteudosInscritos());
+                    System.out.println("Conteudos Inscritos: " + dev.getConteudosInscritos());
                     break;
                 case 3:
-                    System.out.println("Conteúdos Concluídos: " + dev.getConteudosConcluidos());
+                    System.out.println("Conteudos Concluidos: " + dev.getConteudosConcluidos());
                     break;
                 case 4:
                     System.out.println("XP Total: " + dev.calcularTotalXp());
@@ -71,7 +71,7 @@ public class Main {
                     continuar = false;
                     break;
                 default:
-                    System.out.println("Opção inválida. Tente novamente.");
+                    System.out.println("Opcao invalida. Tente novamente.");
             }
         }
 
